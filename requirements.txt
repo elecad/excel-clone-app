@@ -12,3 +12,6 @@ Webpack
             Minified Code
 
 Git
+
+Урок 16
+Eslint отключен, т.к мешает
