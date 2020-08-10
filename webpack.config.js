@@ -81,7 +81,7 @@ module.exports = {
                         }
                     },
                     'css-loader',
-                    'sass-loader',
+                    'sass-loader'
                 ],
             },
             {
