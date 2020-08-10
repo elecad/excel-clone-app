@@ -1,3 +1,1 @@
-import "./module"
-import "./scss/index.scss"
-console.log('Гав!!')
+import './scss/index.scss'
