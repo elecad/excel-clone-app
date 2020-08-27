@@ -4,17 +4,34 @@ export class ExcelComponent extends DomListener {
 
     constructor($root,options = {}) {
         super($root,options.listeners)
-        this.neme = options.name || ""
+        this.name = options.name || ""
+        this.emitter = options.emitter
+        this.prepare()
+        this.insubscribers = []
+    }
+
+    prepare()  { // Настраиваем компонент до init
+
     }
     toHTML() { // возвращает шаблон компонента
         return ""
     }
 
-    init() {
+    $emit(event,...args) { // Уведомляем слушателей о событии
+        this.emitter.emit(event,...args)
+    }
+
+    $on(event, fn) { // Подписываемся на события
+        const unsub = this.emitter.subscribe(event,fn)
+        this.insubscribers.push(unsub)
+    }
+
+    init() { // Иницилищируем компонент + добавляем слушателей
         this.initDOMListeners()
     }
 
-    destroy() {
+    destroy() { // Удаляем компонент + чистим слушателей
         this.removeDOMListeners()
+        this.insubscribers.forEach(unsub => unsub())
     }
 }
